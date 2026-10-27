@@ -8,13 +8,15 @@ public class Main {
 		
 		int encerrar = 0;
 		int encerrar1 = 0;
+		int status1 = 0;
+		int status2 = 0;
 		
-		do 
 		
 		{
 			
 		String jogadores [] = new String[2];
-		int pontos [] = new int [2];
+		int pontos = 0;
+		int pontos2 = 0;
 		
 		for (int i = 0; i < 2; i++) {
 			jogadores[i] = JOptionPane.showInputDialog(null, "Insira o seu vulgo " + (i + 1) );
@@ -22,15 +24,36 @@ public class Main {
 		
 		int escolha1, escolha;
 		
+		while (status1 < 2 && status2 < 2) {
+		
 		String escolha3 = JOptionPane.showInputDialog(null, "Vamos jogar Jokenpo " + jogadores[0] + "\n Insira 1 para Pedra, 2 para Papel e 3 para Tesoura.");
 		escolha = Integer.parseInt(escolha3);
 		
-		String escolha4 = JOptionPane.showInputDialog(null, "Jogaremos Jokenpo contra o jogador " + jogadores[0] + " jogador " + jogadores[1] + "\\n Insira 1 para Pedra, 2 para Papel e 3 para Tesoura.");
+		String escolha4 = JOptionPane.showInputDialog(null, "Jogaremos Jokenpo contra o jogador " + jogadores[0] + " jogador " + jogadores[1] + "\n Insira 1 para Pedra, 2 para Papel e 3 para Tesoura.");
 		escolha1 = Integer.parseInt(escolha4);
 		
-		if ((((escolha == 1) && (escolha1 == 3)) || ((escolha == 2) && (escolha1 == 1)) || (escolha == 3) && (escolha1 == 2)))
+		if ((escolha == 1) && (escolha1 == 3) || (escolha == 2) && (escolha1 == 1) || (escolha == 3) && (escolha1 == 2)) {
+			pontos += 15;
+			status1 += 1;
+			JOptionPane.showMessageDialog(null, "Jogador " + jogadores[0] + " pontuou!\n Pontos do " + jogadores[0] + ": " + pontos + "\n Pontos do jogador " + jogadores[1] + ": " + pontos2);
+			System.out.println(status1);
+		}else if (escolha == escolha1) {
+			JOptionPane.showMessageDialog(null, "Empate! Tente novamente jogadores!");
+		}else {
+			pontos2 += 15;
+			status2 += 1;
+			JOptionPane.showMessageDialog(null, "Jogador " + jogadores[1] + " pontuou!\n Pontos do " + jogadores[0] + ": " + pontos + "\n Pontos do jogador " + jogadores[1] + ": " + pontos2);
+		}
+		}
 		
-		System.out.println(Arrays.toString(pontos));
+		if (status1 == 2) {
+			JOptionPane.showMessageDialog(null, "Jogador " + jogadores[0] + " ganhou o round, tente novamente depois " + jogadores[1] + ".");
+		}else {
+			JOptionPane.showMessageDialog(null, "Jogador " + jogadores[1] + " ganhou o round, tente novamente depois " + jogadores[0] + ".");
+		}
+		
+		
+		System.out.println(pontos + "" + pontos2);
 		System.out.println(Arrays.toString(jogadores));
 		
 		} while (encerrar == 0);
